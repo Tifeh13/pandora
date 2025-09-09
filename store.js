@@ -26,11 +26,77 @@ const rings = [
   "img/Rings/ring-14.jpg",
   "img/Rings/ring-15.jpg",
  ];
-const necklaces = [ /* same URLs from before */ ];
-const bracelets = [ /* same URLs from before */ ];
-const earrings = [ /* same URLs from before */ ];
-const charms = [ /* same URLs from before */ ];
-const watches = [ /* same URLs from before */ ];
+const necklaces = [  
+  "img/Necklace/necklace-1.jpg",
+  "img/Necklace/necklace-2.jpg",
+  "img/Necklace/necklace-3.jpg",
+  "img/Necklace/necklace-4.jpg",
+  "img/Necklace/necklace-5.jpg",
+  "img/Necklace/necklace-6.jpg",
+  "img/Necklace/necklace-7.jpg",
+  "img/Necklace/necklace-8.jpg",
+  "img/Necklace/necklace-9.jpg",
+  "img/Necklace/necklace-10.jpg",
+  "img/Necklace/necklace-11.jpg",
+  "img/Necklace/necklace-12.jpg",
+  "img/Necklace/necklace-13.jpg",
+  "img/Necklace/necklace-14.jpg",
+  "img/Necklace/necklace-15.jpg",
+
+ ];
+const bracelets = [ 
+  "img/Bracelet/bracelet-1.jpg",
+  "img/Bracelet/bracelet-2.jpg",
+  "img/Bracelet/bracelet-3.jpg",
+  "img/Bracelet/bracelet-4.jpg",
+  "img/Bracelet/bracelet-5.jpg",
+  "img/Bracelet/bracelet-6.jpg",
+  "img/Bracelet/bracelet-7.jpg",
+  "img/Bracelet/bracelet-8.jpg",
+  "img/Bracelet/bracelet-9.jpg",
+  "img/Bracelet/bracelet-10.jpg",
+  "img/Bracelet/bracelet-11.jpg",
+  "img/Bracelet/bracelet-12.jpg",
+  "img/Bracelet/bracelet-13.jpg",
+  "img/Bracelet/bracelet-14.jpg",
+  "img/Bracelet/bracelet-15.jpg",
+
+];
+const earrings = [ 
+  "img/Earrings/earrings-1.jpg",
+  "img/Earrings/earrings-2.jpg",
+  "img/Earrings/earrings-3.jpg",
+  "img/Earrings/earrings-4.jpg",
+  "img/Earrings/earrings-5.jpg",
+  "img/Earrings/earrings-6.jpg",
+  "img/Earrings/earrings-7.jpg",
+  "img/Earrings/earrings-8.jpg",
+  "img/Earrings/earrings-9.jpg",
+  "img/Earrings/earrings-10.jpg",
+  "img/Earrings/earrings-11.jpg",
+  "img/Earrings/earrings-12.jpg",
+  "img/Earrings/earrings-13.jpg",
+  "img/Earrings/earrings-14.jpg",
+  "img/Earrings/earrings-15.jpg",
+ ];
+
+const watches = [ 
+  "img/Watch/watch-1.jpg",
+  "img/Watch/watch-2.jpg",
+  "img/Watch/watch-3.jpg",
+  "img/Watch/watch-4.jpg",
+  "img/Watch/watch-5.jpg",
+  "img/Watch/watch-6.jpg",
+  "img/Watch/watch-7.jpg",
+  "img/Watch/watch-8.jpg",
+  "img/Watch/watch-9.jpg",
+  "img/Watch/watch-10.jpg",
+  "img/Watch/watch-11.jpg",
+  "img/Watch/watch-12.jpg",
+  "img/Watch/watch-13.jpg",
+  "img/Watch/watch-14.jpg",
+  "img/Watch/watch-15.jpg",
+ ];
 
 // ------------------------
 // UNIQUE NAMES + LUXURY PRICES
@@ -55,11 +121,7 @@ const earringNames = [
   "Eternal Charm Earrings", "Opal Halo Earrings", "Serenity Sapphire Earrings", "Crimson Flame Studs", "Radiant Cascade Earrings",
   "Twilight Elegance Earrings", "Mystic Pearl Earrings", "Solstice Gold Earrings", "Ivy Bloom Earrings", "Infinite Grace Earrings"
 ];
-const charmNames = [
-  "Golden Clover Charm", "Moonstone Star Charm", "Aurora Heart Charm", "Velvet Rose Charm", "Eternal Knot Charm",
-  "Opal Teardrop Charm", "Celestial Crescent Charm", "Serenity Leaf Charm", "Crimson Bloom Charm", "Radiant Sun Charm",
-  "Twilight Feather Charm", "Mystic Spiral Charm", "Solstice Star Charm", "Ivy Crown Charm", "Infinite Circle Charm"
-];
+
 const watchNames = [
   "Eternal Legacy Watch", "Celestial Timepiece", "Aurora Luxe Watch", "Velvet Horizon Watch", "Moonlit Elegance Watch",
   "Royal Cascade Watch", "Opaline Masterpiece Watch", "Starlight Chronograph", "Golden Era Watch", "Twilight Prestige Watch",
