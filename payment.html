@@ -3,12 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/site.webmanifest">
+
   <title>Checkout - NEOMENO JEWELERS INC.</title>
+
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
   <style>
     :root {
@@ -23,7 +28,6 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: Inter, system-ui, sans-serif; background: #fff; color: var(--ink); }
-
     .container { width: min(1200px, 92%); margin: 0 auto; }
 
     /* HEADER */
@@ -111,14 +115,20 @@
       color: var(--muted);
       font-size: 14px;
     }
+
+    /* Responsive */
+    @media (max-width: 768px){
+      .cart-item { flex-direction: column; align-items: flex-start; }
+      .cart-footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+    }
   </style>
 </head>
 <body>
+
   <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      
-      <a class="brand" href="index.html">  <span class="logo-icon">💎</span> NEOMENO JEWELERS INC.</a>
+      <a class="brand" href="index.html"><span class="logo-icon">💎</span> NEOMENO JEWELERS INC.</a>
     </div>
   </header>
 
@@ -151,7 +161,6 @@
       checkoutItems.innerHTML = cart.map(i => {
         const prod = products.find(p => p.id === i.id);
         if (!prod) return '';
-
         return `
           <div class="cart-item">
             <img src="${prod.img}" alt="${prod.name}">
@@ -174,8 +183,10 @@
       checkoutItems.innerHTML = '<p>Your cart is empty.</p>';
     }
 
+    // iMessage integration
     document.getElementById('proceedPayment').addEventListener('click', (e) => {
       e.preventDefault();
+
       const total = cart.reduce((s, i) => {
         const prod = products.find(p => p.id === i.id);
         return s + (prod ? i.qty * prod.price : 0);
@@ -184,10 +195,13 @@
       const orderDetails = cart.map(i => {
         const prod = products.find(p => p.id === i.id);
         return prod ? `${i.qty} × ${prod.name} (${fmt.format(prod.price)})` : '';
-      }).join('%0D%0A');
+      }).join('\n');
 
-      const body = `Hello,%0D%0A%0D%0AI would like to proceed with this order:%0D%0A${orderDetails}%0D%0A%0D%0ATotal: ${fmt.format(total)}%0D%0A%0D%0AThank you.`;
-      window.location.href = `mailto:ethancopper14@gmail.com?subject=New Order&body=${body}`;
+      const message = `Hello, I would like to proceed with this order:\n${orderDetails}\nTotal: ${fmt.format(total)}\nThank you.`;
+      const encodedMessage = encodeURIComponent(message);
+
+      // sms: URL for iMessage
+      window.location.href = `sms:ethancopper14@gmail.com&body=${encodedMessage}`;
     });
   </script>
 </body>
