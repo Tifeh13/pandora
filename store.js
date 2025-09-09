@@ -1,4 +1,4 @@
-// Full JS: 90 products (15 per category), Pexels images, cart + rendering logic with unique names + luxury prices
+// Full JS: 75 products (15 per category, charms removed), Pexels images, cart + rendering logic with unique names + luxury prices
 
 const fmt = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -10,122 +10,58 @@ const fmt = new Intl.NumberFormat('en-US', {
 // PEXELS IMAGE POOLS (15 each)
 // ------------------------
 const rings = [
-  "img/Rings/ring-1.jpg",
-  "img/Rings/ring-2.jpg",
-  "img/Rings/ring-3.jpg",
-  "img/Rings/ring-4.jpg",
-  "img/Rings/ring-5.jpg",
-  "img/Rings/ring-6.jpg",
-  "img/Rings/ring-7.jpg",
-  "img/Rings/ring-8.jpg",
-  "img/Rings/ring-9.jpg",
-  "img/Rings/ring-10.jpg",
-  "img/Rings/ring-11.jpg",
-  "img/Rings/ring-12.jpg",
-  "img/Rings/ring-13.jpg",
-  "img/Rings/ring-14.jpg",
-  "img/Rings/ring-15.jpg",
- ];
-const necklaces = [  
-  "img/Necklace/necklace-1.jpg",
-  "img/Necklace/necklace-2.jpg",
-  "img/Necklace/necklace-3.jpg",
-  "img/Necklace/necklace-4.jpg",
-  "img/Necklace/necklace-5.jpg",
-  "img/Necklace/necklace-6.jpg",
-  "img/Necklace/necklace-7.jpg",
-  "img/Necklace/necklace-8.jpg",
-  "img/Necklace/necklace-9.jpg",
-  "img/Necklace/necklace-10.jpg",
-  "img/Necklace/necklace-11.jpg",
-  "img/Necklace/necklace-12.jpg",
-  "img/Necklace/necklace-13.jpg",
-  "img/Necklace/necklace-14.jpg",
-  "img/Necklace/necklace-15.jpg",
-
- ];
-const bracelets = [ 
-  "img/Bracelet/bracelet-1.jpg",
-  "img/Bracelet/bracelet-2.jpg",
-  "img/Bracelet/bracelet-3.jpg",
-  "img/Bracelet/bracelet-4.jpg",
-  "img/Bracelet/bracelet-5.jpg",
-  "img/Bracelet/bracelet-6.jpg",
-  "img/Bracelet/bracelet-7.jpg",
-  "img/Bracelet/bracelet-8.jpg",
-  "img/Bracelet/bracelet-9.jpg",
-  "img/Bracelet/bracelet-10.jpg",
-  "img/Bracelet/bracelet-11.jpg",
-  "img/Bracelet/bracelet-12.jpg",
-  "img/Bracelet/bracelet-13.jpg",
-  "img/Bracelet/bracelet-14.jpg",
-  "img/Bracelet/bracelet-15.jpg",
-
+  "img/Rings/ring-1.jpg","img/Rings/ring-2.jpg","img/Rings/ring-3.jpg","img/Rings/ring-4.jpg","img/Rings/ring-5.jpg",
+  "img/Rings/ring-6.jpg","img/Rings/ring-7.jpg","img/Rings/ring-8.jpg","img/Rings/ring-9.jpg","img/Rings/ring-10.jpg",
+  "img/Rings/ring-11.jpg","img/Rings/ring-12.jpg","img/Rings/ring-13.jpg","img/Rings/ring-14.jpg","img/Rings/ring-15.jpg",
 ];
-const earrings = [ 
-  "img/Earrings/earrings-1.jpg",
-  "img/Earrings/earrings-2.jpg",
-  "img/Earrings/earrings-3.jpg",
-  "img/Earrings/earrings-4.jpg",
-  "img/Earrings/earrings-5.jpg",
-  "img/Earrings/earrings-6.jpg",
-  "img/Earrings/earrings-7.jpg",
-  "img/Earrings/earrings-8.jpg",
-  "img/Earrings/earrings-9.jpg",
-  "img/Earrings/earrings-10.jpg",
-  "img/Earrings/earrings-11.jpg",
-  "img/Earrings/earrings-12.jpg",
-  "img/Earrings/earrings-13.jpg",
-  "img/Earrings/earrings-14.jpg",
-  "img/Earrings/earrings-15.jpg",
- ];
-
-const watches = [ 
-  "img/Watch/watch-1.jpg",
-  "img/Watch/watch-2.jpg",
-  "img/Watch/watch-3.jpg",
-  "img/Watch/watch-4.jpg",
-  "img/Watch/watch-5.jpg",
-  "img/Watch/watch-6.jpg",
-  "img/Watch/watch-7.jpg",
-  "img/Watch/watch-8.jpg",
-  "img/Watch/watch-9.jpg",
-  "img/Watch/watch-10.jpg",
-  "img/Watch/watch-11.jpg",
-  "img/Watch/watch-12.jpg",
-  "img/Watch/watch-13.jpg",
-  "img/Watch/watch-14.jpg",
-  "img/Watch/watch-15.jpg",
- ];
+const necklaces = [
+  "img/Necklace/necklace-1.jpg","img/Necklace/necklace-2.jpg","img/Necklace/necklace-3.jpg","img/Necklace/necklace-4.jpg","img/Necklace/necklace-5.jpg",
+  "img/Necklace/necklace-6.jpg","img/Necklace/necklace-7.jpg","img/Necklace/necklace-8.jpg","img/Necklace/necklace-9.jpg","img/Necklace/necklace-10.jpg",
+  "img/Necklace/necklace-11.jpg","img/Necklace/necklace-12.jpg","img/Necklace/necklace-13.jpg","img/Necklace/necklace-14.jpg","img/Necklace/necklace-15.jpg",
+];
+const bracelets = [
+  "img/Bracelet/bracelet-1.jpg","img/Bracelet/bracelet-2.jpg","img/Bracelet/bracelet-3.jpg","img/Bracelet/bracelet-4.jpg","img/Bracelet/bracelet-5.jpg",
+  "img/Bracelet/bracelet-6.jpg","img/Bracelet/bracelet-7.jpg","img/Bracelet/bracelet-8.jpg","img/Bracelet/bracelet-9.jpg","img/Bracelet/bracelet-10.jpg",
+  "img/Bracelet/bracelet-11.jpg","img/Bracelet/bracelet-12.jpg","img/Bracelet/bracelet-13.jpg","img/Bracelet/bracelet-14.jpg","img/Bracelet/bracelet-15.jpg",
+];
+const earrings = [
+  "img/Earrings/earrings-1.jpg","img/Earrings/earrings-2.jpg","img/Earrings/earrings-3.jpg","img/Earrings/earrings-4.jpg","img/Earrings/earrings-5.jpg",
+  "img/Earrings/earrings-6.jpg","img/Earrings/earrings-7.jpg","img/Earrings/earrings-8.jpg","img/Earrings/earrings-9.jpg","img/Earrings/earrings-10.jpg",
+  "img/Earrings/earrings-11.jpg","img/Earrings/earrings-12.jpg","img/Earrings/earrings-13.jpg","img/Earrings/earrings-14.jpg","img/Earrings/earrings-15.jpg",
+];
+const watches = [
+  "img/Watch/watch-1.jpg","img/Watch/watch-2.jpg","img/Watch/watch-3.jpg","img/Watch/watch-4.jpg","img/Watch/watch-5.jpg",
+  "img/Watch/watch-6.jpg","img/Watch/watch-7.jpg","img/Watch/watch-8.jpg","img/Watch/watch-9.jpg","img/Watch/watch-10.jpg",
+  "img/Watch/watch-11.jpg","img/Watch/watch-12.jpg","img/Watch/watch-13.jpg","img/Watch/watch-14.jpg","img/Watch/watch-15.jpg",
+];
 
 // ------------------------
 // UNIQUE NAMES + LUXURY PRICES
 // ------------------------
 const ringNames = [
-  "Emerald Whisper Ring", "Celestial Halo Ring", "Moonstone Crown", "Aurora Diamond Ring", "Velour Ruby Ring",
-  "Eternal Promise Ring", "Opal Stardust Ring", "Serenity Sapphire Ring", "Crimson Blaze Ring", "Radiant Dawn Ring",
-  "Twilight Eternity Ring", "Mystic Pearl Ring", "Solstice Gold Band", "Ivy Charm Ring", "Infinite Grace Ring"
+  "Emerald Whisper Ring","Celestial Halo Ring","Moonstone Crown","Aurora Diamond Ring","Velour Ruby Ring",
+  "Eternal Promise Ring","Opal Stardust Ring","Serenity Sapphire Ring","Crimson Blaze Ring","Radiant Dawn Ring",
+  "Twilight Eternity Ring","Mystic Pearl Ring","Solstice Gold Band","Ivy Charm Ring","Infinite Grace Ring"
 ];
 const necklaceNames = [
-  "Golden Horizon Necklace", "Velvet Nightfall Necklace", "Elysian Pearl Strand", "Celestial Aurora Necklace", "Ocean’s Heart Necklace",
-  "Moonlit Ivy Necklace", "Starlight Whisper Necklace", "Dawnfire Gem Necklace", "Royal Cascade Necklace", "Opaline Elegance Necklace",
-  "Mystic Lagoon Necklace", "Crimson Dawn Necklace", "Emerald Bloom Necklace", "Gilded Serpent Necklace", "Infinite Charm Necklace"
+  "Golden Horizon Necklace","Velvet Nightfall Necklace","Elysian Pearl Strand","Celestial Aurora Necklace","Ocean’s Heart Necklace",
+  "Moonlit Ivy Necklace","Starlight Whisper Necklace","Dawnfire Gem Necklace","Royal Cascade Necklace","Opaline Elegance Necklace",
+  "Mystic Lagoon Necklace","Crimson Dawn Necklace","Emerald Bloom Necklace","Gilded Serpent Necklace","Infinite Charm Necklace"
 ];
 const braceletNames = [
-  "Ivory Charm Bracelet", "Eternal Grace Cuff", "Aurora Bloom Bracelet", "Moonlit Pearl Bangle", "Velvet Chain Bracelet",
-  "Golden Dawn Cuff", "Ocean Breeze Bracelet", "Celestial Charm Bracelet", "Crimson Ivy Bracelet", "Radiant Whisper Bracelet",
-  "Sapphire Bloom Bracelet", "Pearl Cascade Bracelet", "Elysian Knot Bracelet", "Infinite Glow Bracelet", "Twilight Charm Bracelet"
+  "Ivory Charm Bracelet","Eternal Grace Cuff","Aurora Bloom Bracelet","Moonlit Pearl Bangle","Velvet Chain Bracelet",
+  "Golden Dawn Cuff","Ocean Breeze Bracelet","Celestial Charm Bracelet","Crimson Ivy Bracelet","Radiant Whisper Bracelet",
+  "Sapphire Bloom Bracelet","Pearl Cascade Bracelet","Elysian Knot Bracelet","Infinite Glow Bracelet","Twilight Charm Bracelet"
 ];
 const earringNames = [
-  "Emerald Whisper Earrings", "Celestial Hoop Earrings", "Moonlight Drop Earrings", "Aurora Pearl Studs", "Velvet Ruby Drops",
-  "Eternal Charm Earrings", "Opal Halo Earrings", "Serenity Sapphire Earrings", "Crimson Flame Studs", "Radiant Cascade Earrings",
-  "Twilight Elegance Earrings", "Mystic Pearl Earrings", "Solstice Gold Earrings", "Ivy Bloom Earrings", "Infinite Grace Earrings"
+  "Emerald Whisper Earrings","Celestial Hoop Earrings","Moonlight Drop Earrings","Aurora Pearl Studs","Velvet Ruby Drops",
+  "Eternal Charm Earrings","Opal Halo Earrings","Serenity Sapphire Earrings","Crimson Flame Studs","Radiant Cascade Earrings",
+  "Twilight Elegance Earrings","Mystic Pearl Earrings","Solstice Gold Earrings","Ivy Bloom Earrings","Infinite Grace Earrings"
 ];
-
 const watchNames = [
-  "Eternal Legacy Watch", "Celestial Timepiece", "Aurora Luxe Watch", "Velvet Horizon Watch", "Moonlit Elegance Watch",
-  "Royal Cascade Watch", "Opaline Masterpiece Watch", "Starlight Chronograph", "Golden Era Watch", "Twilight Prestige Watch",
-  "Infinite Valor Watch", "Emerald Crown Watch", "Crimson Monarch Watch", "Sapphire Horizon Watch", "Diamond Eternity Watch"
+  "Eternal Legacy Watch","Celestial Timepiece","Aurora Luxe Watch","Velvet Horizon Watch","Moonlit Elegance Watch",
+  "Royal Cascade Watch","Opaline Masterpiece Watch","Starlight Chronograph","Golden Era Watch","Twilight Prestige Watch",
+  "Infinite Valor Watch","Emerald Crown Watch","Crimson Monarch Watch","Sapphire Horizon Watch","Diamond Eternity Watch"
 ];
 
 // Luxury price ranges per category
@@ -135,7 +71,6 @@ function luxuryPrice(category) {
     necklaces: [2000, 8000],
     bracelets: [800, 3500],
     earrings: [700, 2500],
-    charms: [500, 1800],
     watches: [5000, 25000]
   };
   const [min, max] = ranges[category];
@@ -143,7 +78,7 @@ function luxuryPrice(category) {
 }
 
 // ------------------------
-// BUILD PRODUCTS (15 per category)
+// BUILD PRODUCTS (15 per category, 5 categories only)
 // ------------------------
 const products = [];
 const categories = [
@@ -151,7 +86,6 @@ const categories = [
   { key: "necklaces", imgs: necklaces, names: necklaceNames },
   { key: "bracelets", imgs: bracelets, names: braceletNames },
   { key: "earrings", imgs: earrings, names: earringNames },
-  { key: "charms", imgs: charms, names: charmNames },
   { key: "watches", imgs: watches, names: watchNames }
 ];
 
