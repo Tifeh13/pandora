@@ -5,64 +5,190 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-  <title>Checkout - Ava Jewellerys</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>Checkout - NEOMENO JEWELERS INC.</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    :root {
+      --rose: #e9a8b2;
+      --rose-dark: #cc8b96;
+      --ink: #121212;
+      --muted: #6b6b6b;
+      --accent: #ff4da6;
+      --stroke: #eee;
+      --bg: #fff8fb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: #fff; color: var(--ink); }
+
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 0;
+    }
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.3s ease, letter-spacing 0.3s ease;
+    }
+    .brand:hover {
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    /* CHECKOUT ITEMS */
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--stroke);
+      padding: 12px 0;
+      transition: background 0.2s ease;
+    }
+    .cart-item:hover { background: #fff0f5; }
+    .cart-item img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--stroke);
+    }
+    .cart-item h6 { margin: 0; font-size: 16px; }
+    .line { font-size: 14px; color: var(--muted); }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn-primary { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .btn-primary:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    .cart-footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 2px solid #ccc;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid var(--stroke);
+      margin-top: 40px;
+      text-align: center;
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">Ava Jewellerys</a>
+      
+      <a class="brand" href="index.html">  <span class="logo-icon">💎</span> NEOMENO JEWELERS INC.</a>
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="container" style="padding:40px 0">
     <h2>Checkout</h2>
     <div id="checkoutItems"></div>
-    <div class="cart-footer" style="margin-top:20px">
+    <div class="cart-footer">
       <div class="subtotal">
         <span>Total</span>
         <strong id="checkoutTotal">₦0</strong>
       </div>
-      <button class="btn btn-primary" id="proceedPayment">Proceed to Payment</button>
+      <a class="btn btn-primary" id="proceedPayment" href="#">Proceed to Payment</a>
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-bottom">
-      <p>© <span id="year"></span> Ava Jewellerys. All rights reserved.</p>
-    </div>
+    <p>© 2019 NEOMENO JEWELERS INC. All rights reserved.</p>
   </footer>
 
+  <!-- JS -->
   <script src="store.js"></script>
   <script>
     const checkoutItems = document.getElementById('checkoutItems');
     const checkoutTotal = document.getElementById('checkoutTotal');
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
-    if(cart.length){
-      checkoutItems.innerHTML = cart.map(i => `
-        <div class="cart-item">
-          <img src="${i.img}" alt="${i.name}">
-          <div>
-            <h6>${i.name}</h6>
-            <div class="line">${i.qty} × ${fmt.format(i.price)}</div>
+    if (cart.length) {
+      checkoutItems.innerHTML = cart.map(i => {
+        const prod = products.find(p => p.id === i.id);
+        if (!prod) return '';
+
+        return `
+          <div class="cart-item">
+            <img src="${prod.img}" alt="${prod.name}">
+            <div>
+              <h6>${prod.name}</h6>
+              <div class="line">${i.qty} × ${fmt.format(prod.price)}</div>
+            </div>
+            <strong>${fmt.format(i.qty * prod.price)}</strong>
           </div>
-          <strong>${fmt.format(i.qty * i.price)}</strong>
-        </div>
-      `).join('');
-      checkoutTotal.textContent = fmt.format(cart.reduce((s, i) => s + i.qty * i.price, 0));
+        `;
+      }).join('');
+
+      checkoutTotal.textContent = fmt.format(
+        cart.reduce((s, i) => {
+          const prod = products.find(p => p.id === i.id);
+          return s + (prod ? i.qty * prod.price : 0);
+        }, 0)
+      );
     } else {
       checkoutItems.innerHTML = '<p>Your cart is empty.</p>';
     }
 
-    document.getElementById('proceedPayment').addEventListener('click', () => {
-      alert("This is a demo. You can connect Paystack, Flutterwave, or Stripe for real payments.");
-    });
+    document.getElementById('proceedPayment').addEventListener('click', (e) => {
+      e.preventDefault();
+      const total = cart.reduce((s, i) => {
+        const prod = products.find(p => p.id === i.id);
+        return s + (prod ? i.qty * prod.price : 0);
+      }, 0);
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+      const orderDetails = cart.map(i => {
+        const prod = products.find(p => p.id === i.id);
+        return prod ? `${i.qty} × ${prod.name} (${fmt.format(prod.price)})` : '';
+      }).join('%0D%0A');
+
+      const body = `Hello,%0D%0A%0D%0AI would like to proceed with this order:%0D%0A${orderDetails}%0D%0A%0D%0ATotal: ${fmt.format(total)}%0D%0A%0D%0AThank you.`;
+      window.location.href = `mailto:ethancopper14@gmail.com?subject=New Order&body=${body}`;
+    });
   </script>
 </body>
 </html>

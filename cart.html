@@ -5,43 +5,112 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-  <title>Your Cart - Ava</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <title>Your Cart - NEOMENO JEWELERS INC.</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
+    :root {
+      --rose: #e9a8b2;
+      --rose-dark: #cc8b96;
+      --ink: #121212;
+      --muted: #6b6b6b;
+      --accent: #ff4da6;
+      --stroke: #eee;
+      --bg: #fff8fb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, system-ui, sans-serif; background: #fff; color: var(--ink); }
+
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: #fff;
+      border-bottom: 1px solid var(--stroke);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .brand:hover {
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+    .cart-btn {
+      position: relative;
+      background: #fff;
+      border: 1px solid var(--stroke);
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .cart-btn:hover {
+      background: var(--rose);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    /* CART ITEMS */
     .cart-item {
       display: flex;
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 16px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--stroke);
       padding-bottom: 12px;
+      transition: background 0.2s ease;
     }
+    .cart-item:hover { background: #fff0f5; }
     .cart-item img {
       width: 80px;
       height: 80px;
       object-fit: cover;
       border-radius: 8px;
+      border: 1px solid var(--stroke);
     }
-    .cart-item h6 {
-      margin: 0;
-      font-size: 16px;
-    }
-    .line {
-      font-size: 14px;
-      color: #555;
-    }
+    .cart-item h6 { margin: 0; font-size: 16px; }
+    .line { font-size: 14px; color: var(--muted); }
+
     .icon-btn {
       background: #f5f5f5;
       border: none;
       padding: 6px 10px;
       border-radius: 6px;
       cursor: pointer;
+      transition: background 0.2s ease;
     }
-    .icon-btn:hover {
-      background: #ddd;
-    }
+    .icon-btn:hover { background: #ddd; }
+
     .cart-footer {
       margin-top: 20px;
       padding-top: 16px;
@@ -51,25 +120,38 @@
       align-items: center;
     }
     .btn-dark {
-      background: #000;
+      background: var(--ink);
       color: #fff;
       padding: 12px 24px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-size: 16px;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
     .btn-dark:hover {
-      background: #333;
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      background: #fff;
+      border-top: 1px solid var(--stroke);
+      margin-top: 40px;
+      text-align: center;
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="index.html">Ava Jewellery
-
-      </a>
+     
+      <a class="brand" href="index.html">   <span class="logo-icon">💎</span> NEOMENO JEWELERS INC.</a>
       <div class="header-actions">
         <a href="cart.html" class="cart-btn" aria-label="Go to cart">
           <span class="cart-icon">🛍️</span>
@@ -79,6 +161,7 @@
     </div>
   </header>
 
+  <!-- MAIN -->
   <main class="container" style="padding:30px 0;">
     <h2>Your Cart</h2>
     <div id="cartItems"></div>
@@ -91,18 +174,16 @@
     </div>
   </main>
 
+  <!-- FOOTER -->
   <footer class="site-footer">
-    <div class="container footer-bottom">
-      <p>© <span id="year"></span> YourBrand. All rights reserved.</p>
-    </div>
+    <p>© 2019 NEOMENO JEWELERS INC. All rights reserved.</p>
   </footer>
 
-  <!-- This script ensures cart works on cart.html -->
+  <!-- JS -->
   <script src="store.js"></script>
   <script>
-    // On cart page, just render cart again
     document.addEventListener("DOMContentLoaded", () => {
-      renderCart();
+      renderCart(); // Render cart items
     });
   </script>
 </body>

@@ -9,7 +9,9 @@ const fmt = new Intl.NumberFormat('en-US', {
 // ------------------------
 // PEXELS IMAGE POOLS (15 each)
 // ------------------------
-const rings = [ /* same URLs from before */ ];
+const rings = [
+  "img/Rings/last1.jpg",
+ ];
 const necklaces = [ /* same URLs from before */ ];
 const bracelets = [ /* same URLs from before */ ];
 const earrings = [ /* same URLs from before */ ];
