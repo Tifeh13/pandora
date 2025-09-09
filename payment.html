@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <title>Checkout - Ava Jewellerys</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Ava Jewellerys</a>
+    </div>
+  </header>
+
+  <main class="container" style="padding:40px 0">
+    <h2>Checkout</h2>
+    <div id="checkoutItems"></div>
+    <div class="cart-footer" style="margin-top:20px">
+      <div class="subtotal">
+        <span>Total</span>
+        <strong id="checkoutTotal">₦0</strong>
+      </div>
+      <button class="btn btn-primary" id="proceedPayment">Proceed to Payment</button>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Ava Jewellerys. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="store.js"></script>
+  <script>
+    const checkoutItems = document.getElementById('checkoutItems');
+    const checkoutTotal = document.getElementById('checkoutTotal');
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+
+    if(cart.length){
+      checkoutItems.innerHTML = cart.map(i => `
+        <div class="cart-item">
+          <img src="${i.img}" alt="${i.name}">
+          <div>
+            <h6>${i.name}</h6>
+            <div class="line">${i.qty} × ${fmt.format(i.price)}</div>
+          </div>
+          <strong>${fmt.format(i.qty * i.price)}</strong>
+        </div>
+      `).join('');
+      checkoutTotal.textContent = fmt.format(cart.reduce((s, i) => s + i.qty * i.price, 0));
+    } else {
+      checkoutItems.innerHTML = '<p>Your cart is empty.</p>';
+    }
+
+    document.getElementById('proceedPayment').addEventListener('click', () => {
+      alert("This is a demo. You can connect Paystack, Flutterwave, or Stripe for real payments.");
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

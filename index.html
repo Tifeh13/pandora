@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <title>Ava Jewellery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Ava Jewellery</a>
+      <nav class="nav">
+        <button class="nav-link active" data-filter="all">All</button>
+        <button class="nav-link" data-filter="bracelets">Bracelets</button>
+        <button class="nav-link" data-filter="charms">Charms</button>
+        <button class="nav-link" data-filter="rings">Rings</button>
+        <button class="nav-link" data-filter="necklaces">Necklaces</button>
+        <button class="nav-link" data-filter="earrings">Earrings</button>
+        <button class="nav-link" data-filter="gifts">Gifts</button>
+      </nav>
+      <div class="header-actions">
+        <a href="cart.html" class="cart-btn" aria-label="Go to cart">
+          <span class="cart-icon">🛍️</span>
+          <span id="cartCount" class="badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>Shine bright. Sparkle every day.</h1>
+        <p>Elevate your look with timeless pieces — curated for your story.</p>
+        <div class="hero-cta">
+          <a href="#products" class="btn btn-primary">Shop new collection</a>
+          <a href="#products" class="btn btn-outline">Explore bestsellers</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="hero-card">
+          <img src="https://images.pexels.com/photos/29245548/pexels-photo-29245548.jpeg?auto=compress&cs=tinysrgb&w=1200"
+     alt="Elegant jewelry display">
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catalog -->
+  <section id="products" class="catalog">
+    <div class="container">
+      <header class="section-head">
+        <h2>Featured Collection</h2>
+      </header>
+      <div id="grid" class="product-grid"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>
+        <h4>Ava Jewellery</h4>
+        <p>Modern jewelry designed to complement your personality.</p>
+      </div>
+      <div>
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#">New arrivals</a></li>
+          <li><a href="#">Bestsellers</a></li>
+          <li><a href="#">Gift cards</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Help</h5>
+        <ul>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Newsletter</h5>
+        <form class="newsletter" onsubmit="event.preventDefault(); alert('Thanks for subscribing!')">
+          <input type="email" placeholder="Email address" required />
+          <button class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© <span id="year"></span> Ava Jewellery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="store.js"></script>
+</body>
+</html>
