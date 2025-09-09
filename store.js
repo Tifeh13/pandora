@@ -10,7 +10,21 @@ const fmt = new Intl.NumberFormat('en-US', {
 // PEXELS IMAGE POOLS (15 each)
 // ------------------------
 const rings = [
-  "img/Rings/last1.jpg",
+  "img/Rings/ring-1.jpg",
+  "img/Rings/ring-2.jpg",
+  "img/Rings/ring-3.jpg",
+  "img/Rings/ring-4.jpg",
+  "img/Rings/ring-5.jpg",
+  "img/Rings/ring-6.jpg",
+  "img/Rings/ring-7.jpg",
+  "img/Rings/ring-8.jpg",
+  "img/Rings/ring-9.jpg",
+  "img/Rings/ring-10.jpg",
+  "img/Rings/ring-11.jpg",
+  "img/Rings/ring-12.jpg",
+  "img/Rings/ring-13.jpg",
+  "img/Rings/ring-14.jpg",
+  "img/Rings/ring-15.jpg",
  ];
 const necklaces = [ /* same URLs from before */ ];
 const bracelets = [ /* same URLs from before */ ];
