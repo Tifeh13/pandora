@@ -58,19 +58,38 @@
   
   
   /* HEADER */
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: #fff;
-    border-bottom: 1px solid var(--stroke);
-  }
-  .header-inner {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 14px 0;
-  }
+  /* HEADER */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* pushes logo left, nav middle, cart right */
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.brand img {
+  width: 100px;
+  height: auto;
+  border-radius: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 12px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+}
   .brand {
     font-family: "Playfair Display", serif;
     font-weight: 700;
