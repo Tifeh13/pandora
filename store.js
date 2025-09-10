@@ -223,7 +223,13 @@ if (els.searchToggle && els.searchInput) {
   // Live filter on typing
   els.searchInput.addEventListener("input", () => {
     const query = els.searchInput.value.toLowerCase();
-    const list = products.filter(p => p.name.toLowerCase().includes(query));
+
+    // Match by product name OR category
+    const list = products.filter(p => 
+      p.name.toLowerCase().includes(query) || 
+      p.category.toLowerCase().includes(query)
+    );
+
     renderGrid(list);
   });
 
