@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/ios-filled/50/000000/diamond.png">
-<link rel="apple-touch-icon" href="https://img.icons8.com/ios-filled/50/000000/diamond.png">
-
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/?size=100&id=wzOgkYGygjIE&format=png&color=000000">
+  <link rel="apple-touch-icon" href="https://img.icons8.com/?size=100&id=wzOgkYGygjIE&format=png&color=000000">
 
   <title>NEOMENO JEWELERS INC.</title>
 
@@ -16,8 +15,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
-
- 
 </head>
 <body>
   <!-- Header -->
@@ -30,7 +27,7 @@
         </span>
       </a>
   
-      <!-- Nav (centered automatically by flex) -->
+      <!-- Nav -->
       <nav class="nav">
         <button class="nav-link active" data-filter="all">All</button>
         <button class="nav-link" data-filter="bracelets">Bracelets</button>
@@ -40,8 +37,15 @@
         <button class="nav-link" data-filter="gifts">Gifts</button>
       </nav>
   
-      <!-- Cart (far right) -->
+      <!-- Actions (far right) -->
       <div class="header-actions">
+        <!-- Search -->
+        <div class="search-container">
+          <button id="searchToggle" class="search-btn" aria-label="Search">🔍</button>
+          <input type="text" id="searchInput" placeholder="Search jewelry..." />
+        </div>
+
+        <!-- Cart -->
         <a href="cart.html" class="cart-btn" aria-label="Go to cart">
           <span class="cart-icon">🛍️</span>
           <span id="cartCount" class="badge">0</span>
@@ -50,7 +54,6 @@
     </div>
   </header>
   
-
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-inner">

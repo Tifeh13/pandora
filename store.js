@@ -1,5 +1,6 @@
-// Full JS: 75 products (15 per category, charms removed), Pexels images, cart + rendering logic with unique names + luxury prices
-
+// =======================
+// Currency Formatter
+// =======================
 const fmt = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
@@ -7,7 +8,7 @@ const fmt = new Intl.NumberFormat('en-US', {
 });
 
 // ------------------------
-// PEXELS IMAGE POOLS (15 each)
+// IMAGE POOLS (15 each)
 // ------------------------
 const rings = [
   "img/Rings/ring-1.jpg","img/Rings/ring-2.jpg","img/Rings/ring-3.jpg","img/Rings/ring-4.jpg","img/Rings/ring-5.jpg",
@@ -78,7 +79,7 @@ function luxuryPrice(category) {
 }
 
 // ------------------------
-// BUILD PRODUCTS (15 per category, 5 categories only)
+// BUILD PRODUCTS
 // ------------------------
 const products = [];
 const categories = [
@@ -102,7 +103,7 @@ categories.forEach(cat => {
 });
 
 // ------------------------
-// Application state + DOM refs + rendering + cart logic
+// STATE + ELEMENTS
 // ------------------------
 let state = {
   filter: "all",
@@ -116,13 +117,18 @@ const els = {
   cartItems: document.getElementById("cartItems"),
   cartSubtotal: document.getElementById("cartSubtotal"),
   checkoutBtn: document.getElementById("checkoutBtn"),
-  year: document.getElementById("year")
+  year: document.getElementById("year"),
+  searchToggle: document.getElementById("searchToggle"),
+  searchInput: document.getElementById("searchInput")
 };
 
-function renderGrid() {
+// ------------------------
+// RENDER PRODUCTS
+// ------------------------
+function renderGrid(list = null) {
   if (!els.grid) return;
-  const list = state.filter === "all" ? products : products.filter(p => p.category === state.filter);
-  els.grid.innerHTML = list.map(p => `
+  const filtered = list || (state.filter === "all" ? products : products.filter(p => p.category === state.filter));
+  els.grid.innerHTML = filtered.map(p => `
     <article class="card">
       <div class="card-media"><img src="${p.img}" alt="${p.name}"></div>
       <div class="card-body">
@@ -136,6 +142,9 @@ function renderGrid() {
   `).join("");
 }
 
+// ------------------------
+// CART RENDERING
+// ------------------------
 function renderCart() {
   const subtotal = state.cart.reduce((s, it) => {
     const prod = products.find(p => p.id === it.id);
@@ -169,20 +178,17 @@ function renderCart() {
 }
 
 function saveCart() { localStorage.setItem("cart", JSON.stringify(state.cart)); }
-
-function addToCart(id) {
-  const prod = products.find(p => p.id === id);
-  if (!prod) return;
+function addToCart(id) { const prod = products.find(p => p.id === id); if (!prod) return;
   const existing = state.cart.find(c => c.id === id);
-  if (existing) existing.qty += 1;
-  else state.cart.push({ id, qty: 1 });
-  saveCart(); renderCart();
-}
-
-function inc(id) { const item = state.cart.find(i => i.id === id); if (item) { item.qty += 1; saveCart(); renderCart(); } }
+  if (existing) existing.qty += 1; else state.cart.push({ id, qty: 1 });
+  saveCart(); renderCart(); }
+function inc(id) { const item = state.cart.find(i => i.id === id); if (item) { item.qty++; saveCart(); renderCart(); } }
 function dec(id) { const item = state.cart.find(i => i.id === id); if (!item) return; item.qty = Math.max(0, item.qty - 1); if (item.qty === 0) state.cart = state.cart.filter(i => i.id !== id); saveCart(); renderCart(); }
 function rem(id) { state.cart = state.cart.filter(i => i.id !== id); saveCart(); renderCart(); }
 
+// ------------------------
+// CLICK HANDLERS
+// ------------------------
 document.addEventListener("click", (e) => {
   const add = e.target.dataset.add;
   const incId = e.target.dataset.inc;
@@ -201,6 +207,53 @@ document.addEventListener("click", (e) => {
   if (remId) rem(remId);
 });
 
+// ------------------------
+// SEARCH FEATURE
+// ------------------------
+if (els.searchToggle && els.searchInput) {
+  els.searchToggle.addEventListener("click", () => {
+    els.searchInput.classList.toggle("show");
+    if (els.searchInput.classList.contains("show")) {
+      els.searchInput.focus();
+    } else {
+      renderGrid(); // reset
+    }
+  });
+
+  // Live filter on typing
+  els.searchInput.addEventListener("input", () => {
+    const query = els.searchInput.value.toLowerCase();
+    const list = products.filter(p => p.name.toLowerCase().includes(query));
+    renderGrid(list);
+  });
+
+  // Scroll to products on Enter
+  els.searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      document.querySelector("#products").scrollIntoView({ 
+        behavior: "smooth" 
+      });
+    }
+  });
+}
+
+//Search toggle for mobile
+const searchToggle = document.getElementById("searchToggle");
+const searchInput = document.getElementById("searchInput");
+
+if (searchToggle && searchInput) {
+  searchToggle.addEventListener("click", () => {
+    searchInput.classList.toggle("active");
+    if (searchInput.classList.contains("active")) {
+      searchInput.focus();
+    }
+  });
+}
+
+// ------------------------
+// INIT
+// ------------------------
 if (els.checkoutBtn) els.checkoutBtn.addEventListener("click", () => { window.location.href = "payment.html"; });
 if (els.year) els.year.textContent = new Date().getFullYear();
 
