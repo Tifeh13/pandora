@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-   <!-- Favicon -->
-<link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/ios-filled/50/000000/diamond.png">
-<link rel="apple-touch-icon" href="https://img.icons8.com/ios-filled/50/000000/diamond.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Checkout - NEOMENO JEWELERS INC.</title>
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://img.icons8.com/ios-filled/50/000000/diamond.png">
+
   <style>
     :root {
       --rose: #e9a8b2;
-      --rose-dark: #cc8b96;
       --ink: #121212;
       --muted: #6b6b6b;
-      --accent: #ff4da6;
       --stroke: #eee;
-      --bg: #fff8fb;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Inter, system-ui, sans-serif; background: #fff; color: var(--ink); }
+    body { font-family: Inter, sans-serif; background: #fff; color: var(--ink); text-align: center; }
+
     .container { width: min(1200px, 92%); margin: 0 auto; }
 
-    /* HEADER */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #fff;
-      border-bottom: 1px solid var(--stroke);
+    /* Logo */
+    .logo {
+      margin: 30px 0;
     }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 0;
-    }
-    .brand {
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: 26px;
-      color: var(--ink);
-      text-decoration: none;
-      transition: color 0.3s ease, letter-spacing 0.3s ease;
-    }
-    .brand:hover {
-      color: var(--accent);
-      letter-spacing: 1px;
+    .logo img {
+      width: 120px;
+      height: auto;
+      border-radius: 16px;
     }
 
-    /* CHECKOUT ITEMS */
+    /* Card layout (centered box like BTC/ETH) */
+    .card {
+      max-width: 600px;
+      margin: 30px auto;
+      padding: 2rem;
+      background: #fff;
+      border: 1px solid var(--stroke);
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      text-align: left;
+    }
+    .card h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Cart items inside card */
     .cart-item {
       display: flex;
       justify-content: space-between;
@@ -62,99 +57,126 @@
       gap: 16px;
       margin-bottom: 16px;
       border-bottom: 1px solid var(--stroke);
-      padding: 12px 0;
-      transition: background 0.2s ease;
+      padding-bottom: 12px;
     }
-    .cart-item:hover { background: #fff0f5; }
     .cart-item img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid var(--stroke);
+      width: 80px; height: 80px; object-fit: cover;
+      border-radius: 8px; border: 1px solid var(--stroke);
     }
     .cart-item h6 { margin: 0; font-size: 16px; }
     .line { font-size: 14px; color: var(--muted); }
 
-    /* BUTTONS */
+    /* Buttons */
     .btn {
       display: inline-block;
       padding: 12px 24px;
       border-radius: 6px;
-      border: 1px solid transparent;
       font-weight: 600;
       cursor: pointer;
       text-decoration: none;
-      transition: background 0.2s ease, transform 0.2s ease;
+      border: none;
     }
-    .btn-primary { background: var(--ink); color: #fff; border-color: var(--ink); }
-    .btn-primary:hover {
-      background: var(--accent);
-      transform: translateY(-2px);
+    .btn-primary {
+      background: var(--ink); color: #fff;
     }
+    .btn-primary:hover { background: var(--rose); }
 
-    .cart-footer {
-      margin-top: 20px;
-      padding-top: 16px;
-      border-top: 2px solid #ccc;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .btn-pay {
+      width: 100%;
+      padding: 1rem;
+      background: #d4af37;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
     }
+    .btn-pay:hover { background: #b89529; }
 
-    /* FOOTER */
-    .site-footer {
-      background: #fff;
-      border-top: 1px solid var(--stroke);
-      margin-top: 40px;
-      text-align: center;
-      padding: 20px 0;
-      color: var(--muted);
-      font-size: 14px;
+    /* Payment methods */
+    .payment-methods {
+      display: flex; justify-content: space-around; margin-bottom: 1.5rem;
     }
+    .method {
+      cursor: pointer;
+      padding: 0.75rem 1rem;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .method.active { border: 2px solid #d4af37; background: rgba(255,215,0,0.1); }
 
-    /* Responsive */
-    @media (max-width: 768px){
-      .cart-item { flex-direction: column; align-items: flex-start; }
-      .cart-footer { flex-direction: column; gap: 10px; align-items: flex-start; }
+    .wallet {
+      margin: 1rem 0;
+      padding: 0.75rem;
+      background: #f9f9f9;
+      border-radius: 10px;
+      word-wrap: break-word;
+      cursor: pointer;
+      border: 1px solid var(--stroke);
     }
+    .wallet:hover { background: #fff3d1; }
+    .copied { color: #d4af37; font-weight: bold; margin-top: 0.5rem; display: none; }
+    .success-msg { margin-top: 1rem; text-align: center; color: #4caf50; font-weight: bold; display: none; }
+
+    .site-footer { text-align: center; padding: 20px 0; color: var(--muted); font-size: 14px; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html"> <span class="logo-icon">
-        <img src="./img/Rings/the best.png" alt="Logo" style="width:100px; border-radius: 20px; height:auto;">
-      </span>
-    </a>
-    </div>
-  </header>
+  <!-- Logo -->
+  <div class="logo">
+   <a href="index.html">
+    <img src="./img/Rings/the best.png" alt="NEOMENO JEWELERS Logo">
+   </a>
+  </div>
 
-  <!-- MAIN -->
-  <main class="container" style="padding:40px 0">
+  <!-- Checkout Card -->
+  <div class="card">
     <h2>Checkout</h2>
     <div id="checkoutItems"></div>
-    <div class="cart-footer">
-      <div class="subtotal">
-        <span>Total</span>
-        <strong id="checkoutTotal">₦0</strong>
-      </div>
-      <a class="btn btn-primary" id="proceedPayment" href="#">Proceed to Payment</a>
+    <div style="text-align:center; margin-top:20px;">
+      <a class="btn btn-primary" id="proceedPayment" href="#">Send Order by Mail</a>
     </div>
-  </main>
+  </div>
 
-  <!-- FOOTER -->
+  <!-- Payment Card -->
+  <div class="card">
+    <h2>Secure Payment</h2>
+    <div class="payment-methods">
+      <div class="method active" data-method="btc">₿ Bitcoin</div>
+      <div class="method" data-method="eth">Ξ Ethereum</div>
+    </div>
+
+    <div id="btcForm" style="text-align:center;">
+      <p>Send BTC to this wallet address:</p>
+      <div class="wallet" onclick="copyWallet('btcAddress')">
+        <span id="btcAddress">3FeV22GRQE7erquw1Eji9RCE3FSixF7Ajh</span>
+      </div>
+      <div class="copied" id="btcCopied">✅ Copied!</div>
+      <button class="btn-pay" onclick="confirmPayment()">I Have Paid</button>
+    </div>
+
+    <div id="ethForm" style="display:none;text-align:center;">
+      <p>Send ETH to this wallet address:</p>
+      <div class="wallet" onclick="copyWallet('ethAddress')">
+        <span id="ethAddress">0x7c02f66a4Ca55C1d1042DA514DAFe1348dFf82eD</span>
+      </div>
+      <div class="copied" id="ethCopied">✅ Copied!</div>
+      <button class="btn-pay" onclick="confirmPayment()">I Have Paid</button>
+    </div>
+
+    <p class="success-msg" id="successMsg">✅ Payment confirmed. Redirecting...</p>
+  </div>
+
   <footer class="site-footer">
     <p>© 2019 NEOMENO JEWELERS INC. All rights reserved.</p>
   </footer>
 
-  <!-- JS -->
   <script src="store.js"></script>
   <script>
     const checkoutItems = document.getElementById('checkoutItems');
-    const checkoutTotal = document.getElementById('checkoutTotal');
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
     if (cart.length) {
@@ -172,36 +194,49 @@
           </div>
         `;
       }).join('');
-
-      checkoutTotal.textContent = fmt.format(
-        cart.reduce((s, i) => {
-          const prod = products.find(p => p.id === i.id);
-          return s + (prod ? i.qty * prod.price : 0);
-        }, 0)
-      );
     } else {
       checkoutItems.innerHTML = '<p>Your cart is empty.</p>';
     }
 
-    // iMessage integration
+    // Send order by mail
     document.getElementById('proceedPayment').addEventListener('click', (e) => {
       e.preventDefault();
-
-      const total = cart.reduce((s, i) => {
-        const prod = products.find(p => p.id === i.id);
-        return s + (prod ? i.qty * prod.price : 0);
-      }, 0);
-
       const orderDetails = cart.map(i => {
         const prod = products.find(p => p.id === i.id);
         return prod ? `${i.qty} × ${prod.name} (${fmt.format(prod.price)})` : '';
       }).join('\n');
 
-      const message = `Hello, I would like to proceed with this order:\n${orderDetails}\nTotal: ${fmt.format(total)}\nThank you.`;
-      const encodedMessage = encodeURIComponent(message);
+      const message = `Hello, I would like to proceed with this order:%0D%0A${orderDetails}%0D%0AThank you.`;
+      window.location.href = `mailto:jewelersinc101@gmail.com?subject=New Order&body=${message}`;
+    });
 
-      // sms: URL for iMessage
-      window.location.href = `sms:ethancopper14@gmail.com&body=${encodedMessage}`;
+    // Copy wallet
+    function copyWallet(id) {
+      const el = document.getElementById(id);
+      navigator.clipboard.writeText(el.textContent).then(() => {
+        const msg = document.getElementById(id === 'btcAddress' ? 'btcCopied' : 'ethCopied');
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 1500);
+      });
+    }
+
+    function confirmPayment() {
+      localStorage.removeItem("ava_cart_v1");
+      document.getElementById("successMsg").style.display = "block";
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 2000);
+    }
+
+    // Switch method
+    document.querySelectorAll(".method").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".method").forEach(m => m.classList.remove("active"));
+        btn.classList.add("active");
+        const method = btn.dataset.method;
+        document.getElementById("btcForm").style.display = method === "btc" ? "block" : "none";
+        document.getElementById("ethForm").style.display = method === "eth" ? "block" : "none";
+      });
     });
   </script>
 </body>
